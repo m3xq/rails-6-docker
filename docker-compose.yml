@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:VERSION
+    container_name: APPNAME_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+  app:
+    build: .
+    container_name: APPNAME_app
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+    entrypoint: entrypoint.sh
+    command: ["rails", "s", "-b", "0.0.0.0"]
+
+volumes:
+  db_data:
+  gem_cache:
