@@ -8,6 +8,16 @@ services:
       - 5432:5432
     env_file:
       - .env
+
+  redis:
+    image: redis:VERSION
+    container_name: APPNAME_redis
+    command: redis-server
+    volumes:
+      - redis:/data
+    ports:
+      - 6379:6379
+
   app:
     build: .
     container_name: APPNAME_app
@@ -26,3 +36,4 @@ services:
 volumes:
   db_data:
   gem_cache:
+  redis:
