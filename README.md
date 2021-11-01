@@ -1,6 +1,6 @@
 ## Usage
 
-* Copy all files to the root of your application
+* Copy all files to the root of your application except config folder
 
 * Change VERSION and APPNAME
 
